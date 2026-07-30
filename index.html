@@ -2,122 +2,183 @@
 <html lang="en">
 
 <head>
+  https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Da(ta) Vinci Code</title>
 
- /css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
  <style>
-   
    body {
-     font-family: 'Cormorant Garamond', serif;
-     text-align: center;
-     background: #f5f0e1;
-     color: #3e2c1c;
      margin: 0;
-     padding: 20px;
+     padding: 0;
+     overflow: hidden;
+     background: #000;
+     font-family: 'Cormorant Garamond', serif;
    }
 
- h1 {
-   font-family: 'Cinzel', serif;
-   font-size: 3rem;
-   letter-spacing: 3px;
-   margin-bottom: 20px;
- }
-
- h2 {
-   font-family: 'Cormorant Garamond', serif;
-   font-size: 2rem;
- }
-
- p {
-   font-size: 1.4rem;
-}
-
- .codex {
-   width: 900px;
-   max-width: 100%;
-   margin: auto;
+ .page-container {
    position: relative;
-}
+   width: 100vw;
+   height: 100vh;
+ }
 
- .codex img {
+ .hero-image {
    width: 100%;
-   display: block;
-   border-radius: 8px;
-}
+   height: 100%;
+   object-fit: cover;
+ }
 
-.input-box {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  .title {
+    position: absolute;
+    top: 3%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #f0e3c0;
+    text-shadow: 2px 2px 8px black;
+  }
 
- input {
-   font-family: 'Cinzel', serif;
-   font-size: 28px;
-   text-transform: uppercase;
-   width: 200px;
+ .letter-container {
+   position: absolute;
+   top: 42%;
+   left: 50%;
+   transform: translateX(-50%);
+   display: flex;
+   gap: 8px;
+ }
+
+ .letter-box {
+   width: 50px;
+   height: 60px;
    text-align: center;
-   padding: 10px;
+   font-size: 32px;
+   text-transform: uppercase;
+   font-family: 'Cinzel', serif;
+   background: rgba(245,220,170,.9);
    border: 2px solid #6b4f2a;
-   background: rgba(255, 248, 220, 0.9);
-   color: #3e2c1c;
-}
+ }
 
-button {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  padding: 12px 24px;
-  margin-top: 12px;
-  border: 2px solid #6b4f2a;
-  background: #d8c3a5;
-  color: #3e2c1c;
-  cursor: pointer;
-}
+ .submit-container {
+   position: absolute;
+   top: 53%;
+   width: 100%;
+   text-align: center;
+ }
 
- button:hover {
-   background: #c7ae8a;
-}
+ button {
+   font-family: 'Cinzel', serif;
+   padding: 12px 24px;
+   cursor: pointer;
+   background: #d8c3a5;
+   border: 2px solid #6b4f2a;
+ }
 
  #attempts {
-   font-size: 1.3rem;
+   color: white;
+   font-size: 1.5rem;
+   text-shadow: 2px 2px 4px black;
+ }
+
+ .popup-overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(0,0,0,.8);
+   display: none;
+   justify-content: center;
+   align-items: center;
+   z-index: 999;
+ }
+
+ .popup {
+   background: #efe1b0;
+   padding: 40px;
+   border: 6px solid #6b4f2a;
+   text-align: center;
+   max-width: 600px;
+ }
+
+ .popup h1 {
+   font-family: 'Cinzel', serif;
+ }
+
+ .countdown {
+   font-size: 2rem;
    font-weight: bold;
-   margin-top: 12px;
-}
+ }
 
  </style>
 </head>
 
 <body>
   
-  <h1>The Da(ta) Vinci Code</h1>
-  
-  <div class="codex">
+  <div class="page-container">
     
-    <img src="CryptexImage.png" alt="ass="input-box">
+    CryptexImage.png
     
-    <input
-      id="answer"
-      maxlength="5"
-      autocomplete="off"
-      placeholder="ENTER">
+    <div class="title">
+      The Da(ta) Vinci Code
+    </div>
     
-    <br>
+    <div class="letter-container">
+      
+      <input class="letter-box" maxlength="1" id="l1">
+      <input class="letter-box" maxlength="1" id="l2">
+      <input class="letter-box" maxlength="1" id="l3">
+      <input class="letter-box" maxlength="1" id="l4">
+      <input class="letter-box" maxlength="1" id="l5">
     
-    <button onclick="checkAnswer()">
-      Submit
-    </button>
+    </div>
     
-    <p id="attempts">
-      Attempts Remaining: 3
-    </p>
+    <div class="submit-container">
+      
+      <button onclick="checkAnswer()">
+        Submit
+      </button>
+      
+      <p id="attempts">
+        Attempts Remaining: 3
+      </p>
+   
+    </div>
   
   </div>
-
-</div>
+  
+  <div class="popup-overlay" id="successPopup">
+    
+    <div class="popup">
+      
+      <h1>Congratulations!</h1>
+      
+      <h2>
+        You have solved the Da(ta) Vinci Code!
+      </h2>
+      
+      <p>
+        Redirecting to the survey in:
+      </p>
+      <div class="countdown" id="countdown">
+        10
+      </div>
+    
+    </div>
+  
+  </div>
+  
+  <div class="popup-overlay" id="failurePopup">
+    
+    <div class="popup">
+      
+      <h1>Better Luck Next Time</h1>
+      
+      <button onclick="location.reload()">
+        Try Again
+      </button>
+    
+    </div>
+  
+  </div>
 
 <script>
   
@@ -125,48 +186,71 @@ button {
   
   const answer = "APPLE";
   
-  function checkAnswer() {
+  document.querySelectorAll('.letter-box').forEach((box, index, boxes) => {
     
-    const userAnswer = document
-      .getElementById("answer")
-      .value
-      .trim()
-      .toUpperCase();
+    box.addEventListener('input', function () {
+      
+      this.value = this.value.toUpperCase();
+      
+      if (this.value.length === 1 && index < boxes.length - 1) {
+        boxes[index + 1].focus();
+      }
     
-    if (userAnswer === answer) {
+    });
+  
+  });
+
+function checkAnswer() {
+  
+  const enteredWord =
+    document.getElementById('l1').value +
+    document.getElementById('l2').value +
+    document.getElementById('l3').value +
+    document.getElementById('l4').value +
+    document.getElementById('l5').value;
+  
+  if (enteredWord === answer) {
+    
+    document.getElementById('successPopup').style.display = 'flex';
+    
+    let countdown = 10;
+    
+    const timer = setInterval(() => {
       
-      document.body.innerHTML = `
-      <h1>Congratulations!</h1>
-      <h2>You have solved the Da(ta) Vinci Code!</h2>
-      <p>Redirecting to the survey in 10 seconds...</p>
-      `;
+      countdown--;
       
-      setTimeout(function () {
+      document.getElementById('countdown').innerText =
         
-        window.location.href = "FORM_URL_HERE";
+        countdown;
       
-      }, 10000);
+      if (countdown === 0) {
+        
+        clearInterval(timer);
+        
+        window.location.href =
+          
+          "FORM_URL_HERE";
       
-      return;
-    }
+      }
     
-    attempts--;
+    }, 1000);
     
-    document.getElementById("attempts").innerText =
-      "Attempts Remaining: " + attempts;
-    
-    if (attempts <= 0) {
-      
-      document.body.innerHTML = `
-      <h1>Better Luck Next Time</h1>
-      <p>The code remains unsolved.</p>
-      
-      <button onclick="location.reload()">
-      Try Again
-      </button>
-      `;
-    }
+    return;
   }
+  attempts--;
+  
+  document.getElementById('attempts').innerText =
+    
+    "Attempts Remaining: " + attempts;
+  
+  if (attempts <= 0) {
+    
+    document.getElementById('failurePopup').style.display =
+      'flex';
+  
+  }
+
+}
   
 </script>
 
